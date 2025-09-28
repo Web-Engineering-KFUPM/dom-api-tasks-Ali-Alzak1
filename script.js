@@ -19,7 +19,8 @@ inside the <p> element with id="t1-msg".
 💡 Hint:
 document.getElementById("t1-msg").innerHTML = "Hello, World!";
 */
- 
+
+document.getElementById("t1-msg").innerHTML = "Hello, World!";
 
 /*  
 =======================================
@@ -41,7 +42,13 @@ button.addEventListener("click", function () {
 });
 */
  
-
+       const t2Status =  document.getElementById("t2-status");
+        const button = document.getElementById("t2-btn");
+        button.addEventListener("click", function () {
+            t2Status.innerHTML = "You clicked the button!";
+        });
+    
+    
 /*  
 =======================================
 TODO3: Inspiring Quote Board
