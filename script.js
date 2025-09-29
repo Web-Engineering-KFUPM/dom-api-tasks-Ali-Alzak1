@@ -75,7 +75,26 @@ Use:
 data.content   // the quote text
 data.author    // the author
 */
- 
+const t3loadQuote = document.getElementById("t3-loadQuote");
+const t3quote = document.getElementById("t3-quote");
+const t3author = document.getElementById("t3-author");
+
+t3loadQuote.addEventListener("click", function () {
+  fetch("https://dummyjson.com/quotes/random")
+    .then(function (response) {
+      if (!response.ok) {
+        throw new Error("HTTP " + response.status);
+      }
+      return response.json();
+    })
+    .then(function (data) {
+      t3quote.innerHTML = data.quote;  
+      t3author.innerHTML = data.author;
+    })
+    .catch(function (err) {
+      console.log("Error Detected.", err);
+    });
+});
 
 /*  
 =======================================
@@ -101,3 +120,27 @@ data.main.temp      → temperature (°C)
 data.main.humidity  → humidity (%)
 data.wind.speed     → wind speed (m/s)
 */
+
+const t4loadWx = document.getElementById("t4-loadWx");
+const t4temp = document.getElementById("t4-temp");
+const t4hum = document.getElementById("t4-hum");
+const t4wind = document.getElementById("t4-wind");
+
+t4loadWx.addEventListener("click", function () {
+    fetch("https://api.openweathermap.org/data/2.5/weather?q=Dammam&appid=b40ed27c1b3d2c81333a7a643cea7481&units=metric")
+    .then(function (response) {
+        if (!response.ok) {
+            throw new Error("HTTP " + response.status);
+        }
+        return response.json();
+    })
+    .then(function (data) {
+        t4temp.innerHTML = data.main.temp + " °C";
+        t4hum.innerHTML = data.main.humidity + " %";
+        t4wind.innerHTML = data.wind.speed + " m/s";
+    }
+    )
+    .catch(function (err) {
+        console.log("Error Detected.", err);
+    });
+});
